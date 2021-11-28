@@ -11,8 +11,8 @@ public class RuleEngine {
     protected String emailId;
     protected String commissionPayment;
 
-    RuleEngine(Integer membership, String emailId) {
-        this.membership = membership;
+    RuleEngine(String emailId) {
+        this.membership = 0;
         packingSlip = "";
         this.emailId = emailId;
         commissionPayment = "";
@@ -25,5 +25,11 @@ public class RuleEngine {
         this.currentState = currentState;
     }
 
-
+    void handleClientEvent(PaymentType paymentType) {
+        if (membership > 0) {
+            currentState.handleEvent(this, paymentType);
+        } else {
+            System.out.println("Please activate Membership\n");
+        }
+    }
 }

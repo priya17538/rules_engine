@@ -3,7 +3,7 @@ public enum PaymentType {
     BOOK,
     MEMBERSHIP,
     UPGRADE,
-    VIDEO,
+    VIDEO, // Convention here video is “Learning to Ski"
     MEMBERSHIP_UPGRADE,
     PHYSICAL_PRODUCT_Book
 }

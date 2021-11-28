@@ -1,12 +1,10 @@
 public abstract class PaymentState {
-
-    void activateMembership(RuleEngine ctx, PaymentType paymentType) {
-        throw new IllegalStateException("this operation not valid");
-    }
-    void upgradeMembership(RuleEngine ctx, PaymentType paymentType) {
-        throw new IllegalStateException("this operation not valid");
-    }
     void handleEvent(RuleEngine ctx, PaymentType paymentType) {
         throw new IllegalStateException("this operation not valid");
+    }
+    void generateEmail(RuleEngine ctx, String message) {
+      //  ctx.emailId is accessible
+        System.out.println(message);
+        //posting this message to the email-id
     }
 }
