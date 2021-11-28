@@ -3,5 +3,7 @@ public enum PaymentType {
     BOOK,
     MEMBERSHIP,
     UPGRADE,
-    VIDEO
+    VIDEO,
+    MEMBERSHIP_UPGRADE,
+    PHYSICAL_PRODUCT_Book
 }
