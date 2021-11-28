@@ -6,6 +6,7 @@ public class Video extends PaymentState{
         //decision in 1997).
         if (paymentType == PaymentType.VIDEO) {
             ctx.packingSlip += "\nadd a free “First Aid” video to the packing slip\n";
+            System.out.println("In Video packingSlip(VIDEO): " + ctx.packingSlip);
         }
     }
 }
