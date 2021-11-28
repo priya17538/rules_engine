@@ -1,10 +1,17 @@
-public abstract class PaymentState {
-    void handleEvent(RuleEngine ctx, PaymentType paymentType) {
+import java.util.Map;
+
+public interface PaymentState {
+    default void handleEvent(RuleEngine ctx, PaymentType paymentType) {
         throw new IllegalStateException("this operation not valid");
     }
-    void generateEmail(RuleEngine ctx, String message) {
+
+    default void generateEmail(RuleEngine ctx) {
       //  ctx.emailId is accessible
-        System.out.println(message);
+        System.out.println(ctx.message);
         //posting this message to the email-id
     }
+
+    public Map<PaymentType, PaymentState> getRule();
+
+
 }

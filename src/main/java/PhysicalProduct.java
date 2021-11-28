@@ -1,7 +1,19 @@
-public class  PhysicalProduct extends PaymentState{
+import java.util.Map;
+
+public class  PhysicalProduct implements PaymentState{
+
+    protected static Map<PaymentType, PaymentState> rule;
+
+    public static void setRule(Map<PaymentType, PaymentState> rules) {
+        rule = rules;
+    }
+    @Override
+    public Map<PaymentType, PaymentState> getRule() {
+        return rule;
+    }
 
     @Override
-    void handleEvent(RuleEngine ctx, PaymentType paymentType) {
+    public void handleEvent(RuleEngine ctx, PaymentType paymentType) {
         switch (paymentType) {
             case PHYSICAL_PRODUCT:
                 ctx.packingSlip = "generating packing slip for shipping\n";
@@ -15,4 +27,5 @@ public class  PhysicalProduct extends PaymentState{
                 break;
         }
     }
+
 }
