@@ -26,6 +26,7 @@ public class RuleEngine {
 
     private void initializeStateMachine() {
         Map<PaymentType, PaymentState> membershipRule = new EnumMap<>(PaymentType.class);
+        membershipRule.put(PaymentType.MEMBERSHIP, MEMBERSHIP);
         membershipRule.put(PaymentType.BOOK, BOOK);
         membershipRule.put(PaymentType.MEMBERSHIP_UPGRADE, MEMBERSHIP);
         membershipRule.put(PaymentType.PHYSICAL_PRODUCT, PHYSICAL_PRODUCT);
@@ -38,7 +39,7 @@ public class RuleEngine {
         bookrule.put(PaymentType.VIDEO, VIDEO);
         bookrule.put(PaymentType.MEMBERSHIP_UPGRADE, UPGRADE);
         bookrule.put(PaymentType.PHYSICAL_PRODUCT, PHYSICAL_PRODUCT);
-        bookrule.put(PaymentType.PHYSICAL_PRODUCT_Book, PHYSICAL_PRODUCT);
+        bookrule.put(PaymentType.PHYSICAL_PRODUCT_Book, BOOK);
         Book.setRule(bookrule);
         Video.setRule(bookrule);
         PhysicalProduct.setRule(bookrule);
@@ -49,7 +50,8 @@ public class RuleEngine {
         return currentState;
     }
     void setCurrentState (PaymentState paymentState) {
-        this.currentState = currentState;
+        System.out.println("RuleEngine from current state: " + this.currentState + "to new state: " + paymentState + "\n");
+        this.currentState = paymentState;
     }
 
     void handleClientEvent(PaymentType paymentType) {
@@ -57,6 +59,7 @@ public class RuleEngine {
             System.out.println("\n Illegal Payment Type in current state");
             throw new IllegalStateException("Event is not valid in current state.");
         }
+        setCurrentState(currentState.getRule().get(paymentType));
         currentState.handleEvent(this, paymentType);
     }
 }
